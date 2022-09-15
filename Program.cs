@@ -17,17 +17,29 @@ namespace WebsiteGenerator
 
             GenerateWebsite website1 = new GenerateWebsite(nameOfClass, messages, classes, styleColor);
 
+
             Console.ReadLine();
         }
 
-        abstract class Website
+        interface IWebsite
+        {
+            void PrintWebpage(string className, string[] messages, string[] classes, string style);
+
+            void Start();
+
+            void ClassAndMessage(string className, string[] messages, string[] classes, string style);
+
+            void End();
+        }
+
+        class GenerateWebsite : IWebsite
         {
             string className;
             string[] messages;
             string[] classes;
             string style;
 
-            protected Website(string className, string[] messages, string[] classes, string style = "")
+            public GenerateWebsite(string className, string[] messages, string[] classes, string style = "")
             {
                 this.className = className;
                 this.messages = messages;
@@ -36,7 +48,8 @@ namespace WebsiteGenerator
 
                 PrintWebpage(className, messages, classes, style);
             }
-            void PrintWebpage(string className, string[] messages, string[] classes, string style)
+
+            public void PrintWebpage(string className, string[] messages, string[] classes, string style)
             {
                 Start();
 
@@ -45,12 +58,12 @@ namespace WebsiteGenerator
                 End();
             }
 
-            void Start()
+            public void Start()
             {
                 Console.WriteLine("<!DOCTYPE html>\n<html>");
             }
 
-            void ClassAndMessage(string className, string[] messages, string[] classes, string style)
+            public void ClassAndMessage(string className, string[] messages, string[] classes, string style)
             {
                 if (style != "")
                 {
@@ -74,16 +87,9 @@ namespace WebsiteGenerator
                 }
             }
 
-            void End()
+            public void End()
             {
                 Console.WriteLine("</main>\n</body>\n</html>");
-            }
-        }
-
-        class GenerateWebsite : Website
-        {
-            public GenerateWebsite(string className, string[] messages, string[] classes, string style = "") : base(className, messages, classes, style)
-            {
             }
         } 
     }
