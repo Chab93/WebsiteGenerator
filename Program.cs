@@ -71,5 +71,59 @@ namespace WebsiteGenerator
                 Console.WriteLine("</main>\n</body>\n</html>");
             }
         }
+
+        abstract class Website
+        {
+            string className;
+            string[] messages;
+            string[] classes;
+            string style;
+
+            public Website(string className, string[] messages, string[] classes, string style = "")
+            {
+                this.className = className;
+                this.messages = messages;
+                this.classes = classes;
+                this.style = style;
+
+                PrintWebpage(className, messages, classes, style);
+            }
+
+            static void PrintWebpage(string className, string[] messages, string[] classes, string style)
+            {
+                Start();
+
+                ClassAndMessage(className, messages, classes, style);
+
+                End();
+            }
+
+            static void Start()
+            {
+                Console.WriteLine("<!DOCTYPE html>\n<html>");
+            }
+
+            static void ClassAndMessage(string className, string[] messages, string[] classes, string style)
+            {
+                if (style != "")
+                {
+
+                }
+
+                Console.WriteLine($"<body>\n<h1>Välkomna {className}!</h1>");
+
+                for (int i = 0; i < messages.Length; i++)
+                {
+                    Console.WriteLine($"<p><b>Meddelande {i + 1}:</b> {messages[i]}</p>");
+                }
+
+                Console.WriteLine("<main>");
+
+                foreach (string c in classes)
+                {
+                    Console.WriteLine($"<p>Kurs om {c.Trim().Substring(0, 1).ToUpper()}{c.Trim().Substring(1).ToLower()}</p>");
+                }
+            }
+        }
     }
 }
