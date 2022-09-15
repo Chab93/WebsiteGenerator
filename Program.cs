@@ -15,6 +15,8 @@ namespace WebsiteGenerator
             string[] classes = { "   C#", "daTAbaser", "WebbuTVeCkling  ", "clean Code      " };
             string styleColor = "blue";
 
+            // Solving fake bug by pushing from Visual Studio with message to resolve bug #1
+
             GenerateWebsite website1 = new GenerateWebsite(nameOfClass, messages, classes, styleColor);
 
             Console.ReadLine();
